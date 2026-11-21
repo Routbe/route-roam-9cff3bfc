@@ -69,7 +69,10 @@ export async function applySignupProfile(
   if (avatarUrl && !profile?.avatar_url) patch["avatar_url"] = avatarUrl;
 
   let nextUsername: string | null = null;
-  if (requested && isUsableHandle(requested) && profile?.username !== requested) {
+  // Owner rule: before Didit KYC the requested name only becomes the private /u/ alias.
+  const { memberMayHoldRootHandle } = await import("./kyc/root-handle-gate.server");
+  const rootAllowed = await memberMayHoldRootHandle(userId);
+  if (rootAllowed && requested && isUsableHandle(requested) && profile?.username !== requested) {
     const taken = (await sql`
       select id from public.profiles where username = ${requested} limit 1
     `) as Row[];
@@ -112,6 +115,7 @@ export async function applySignupProfile(
     const message = error instanceof Error ? error.message : "update_failed";
     return { ok: false, applied: false, reason: message };
   }
+  if (!nextUsername) await ensureAlias(requested || null);
 
   return { ok: true, applied: true, handle: nextUsername ?? profile?.username ?? null };
 }
