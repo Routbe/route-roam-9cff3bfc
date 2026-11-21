@@ -181,12 +181,16 @@ export function AppLayout({
   );
 }
 
+/**
+ * Desktop only: on phones and tablets signed-in tools pin their own action bars to the
+ * bottom edge (Studio save/preview), and this line would paint over them.
+ */
 function OsStatusLine() {
   const { t } = useTranslation();
   return (
     <footer
       data-testid="os-status-line"
-      className="sticky bottom-0 z-40 hidden h-7 items-center justify-center gap-2 border-t border-border/60 bg-background/90 font-mono text-[11px] text-muted-foreground backdrop-blur"
+      className="sticky bottom-0 z-40 hidden h-7 lg:flex items-center justify-center gap-2 border-t border-border/60 bg-background/90 font-mono text-[11px] text-muted-foreground backdrop-blur"
     >
       <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-live" aria-hidden />
       {t("ui.systemsOperational")}
