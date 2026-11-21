@@ -81,6 +81,7 @@ import { Route as UsernameZkpAnchorDotjsonRouteImport } from './routes/$username
 import { Route as DotwellKnownAtprotoDidRouteImport } from './routes/[.]well-known.atproto-did'
 import { Route as DotwellKnownJwksDotjsonRouteImport } from './routes/[.]well-known.jwks[.]json'
 import { Route as DotwellKnownJwtVcIssuerRouteImport } from './routes/[.]well-known.jwt-vc-issuer'
+import { Route as DotwellKnownMcpDotjsonRouteImport } from './routes/[.]well-known.mcp[.]json'
 import { Route as DotwellKnownOpenapiDotjsonRouteImport } from './routes/[.]well-known.openapi[.]json'
 import { Route as DotwellKnownOpenidConfigurationRouteImport } from './routes/[.]well-known.openid-configuration'
 import { Route as DotwellKnownOpenidCredentialIssuerRouteImport } from './routes/[.]well-known.openid-credential-issuer'
@@ -837,6 +838,11 @@ const DotwellKnownJwksDotjsonRoute = DotwellKnownJwksDotjsonRouteImport.update({
 const DotwellKnownJwtVcIssuerRoute = DotwellKnownJwtVcIssuerRouteImport.update({
   id: '/.well-known/jwt-vc-issuer',
   path: '/.well-known/jwt-vc-issuer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DotwellKnownMcpDotjsonRoute = DotwellKnownMcpDotjsonRouteImport.update({
+  id: '/.well-known/mcp.json',
+  path: '/.well-known/mcp.json',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DotwellKnownOpenapiDotjsonRoute =
@@ -3025,6 +3031,7 @@ export interface FileRoutesByFullPath {
   '/.well-known/atproto-did': typeof DotwellKnownAtprotoDidRoute
   '/.well-known/jwks.json': typeof DotwellKnownJwksDotjsonRoute
   '/.well-known/jwt-vc-issuer': typeof DotwellKnownJwtVcIssuerRoute
+  '/.well-known/mcp.json': typeof DotwellKnownMcpDotjsonRoute
   '/.well-known/openapi.json': typeof DotwellKnownOpenapiDotjsonRoute
   '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationRoute
   '/.well-known/openid-credential-issuer': typeof DotwellKnownOpenidCredentialIssuerRoute
@@ -3482,6 +3489,7 @@ export interface FileRoutesByTo {
   '/.well-known/atproto-did': typeof DotwellKnownAtprotoDidRoute
   '/.well-known/jwks.json': typeof DotwellKnownJwksDotjsonRoute
   '/.well-known/jwt-vc-issuer': typeof DotwellKnownJwtVcIssuerRoute
+  '/.well-known/mcp.json': typeof DotwellKnownMcpDotjsonRoute
   '/.well-known/openapi.json': typeof DotwellKnownOpenapiDotjsonRoute
   '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationRoute
   '/.well-known/openid-credential-issuer': typeof DotwellKnownOpenidCredentialIssuerRoute
@@ -3948,6 +3956,7 @@ export interface FileRoutesById {
   '/.well-known/atproto-did': typeof DotwellKnownAtprotoDidRoute
   '/.well-known/jwks.json': typeof DotwellKnownJwksDotjsonRoute
   '/.well-known/jwt-vc-issuer': typeof DotwellKnownJwtVcIssuerRoute
+  '/.well-known/mcp.json': typeof DotwellKnownMcpDotjsonRoute
   '/.well-known/openapi.json': typeof DotwellKnownOpenapiDotjsonRoute
   '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationRoute
   '/.well-known/openid-credential-issuer': typeof DotwellKnownOpenidCredentialIssuerRoute
@@ -4419,6 +4428,7 @@ export interface FileRouteTypes {
     | '/.well-known/atproto-did'
     | '/.well-known/jwks.json'
     | '/.well-known/jwt-vc-issuer'
+    | '/.well-known/mcp.json'
     | '/.well-known/openapi.json'
     | '/.well-known/openid-configuration'
     | '/.well-known/openid-credential-issuer'
@@ -4876,6 +4886,7 @@ export interface FileRouteTypes {
     | '/.well-known/atproto-did'
     | '/.well-known/jwks.json'
     | '/.well-known/jwt-vc-issuer'
+    | '/.well-known/mcp.json'
     | '/.well-known/openapi.json'
     | '/.well-known/openid-configuration'
     | '/.well-known/openid-credential-issuer'
@@ -5341,6 +5352,7 @@ export interface FileRouteTypes {
     | '/.well-known/atproto-did'
     | '/.well-known/jwks.json'
     | '/.well-known/jwt-vc-issuer'
+    | '/.well-known/mcp.json'
     | '/.well-known/openapi.json'
     | '/.well-known/openid-configuration'
     | '/.well-known/openid-credential-issuer'
@@ -5812,6 +5824,7 @@ export interface RootRouteChildren {
   DotwellKnownAtprotoDidRoute: typeof DotwellKnownAtprotoDidRoute
   DotwellKnownJwksDotjsonRoute: typeof DotwellKnownJwksDotjsonRoute
   DotwellKnownJwtVcIssuerRoute: typeof DotwellKnownJwtVcIssuerRoute
+  DotwellKnownMcpDotjsonRoute: typeof DotwellKnownMcpDotjsonRoute
   DotwellKnownOpenapiDotjsonRoute: typeof DotwellKnownOpenapiDotjsonRoute
   DotwellKnownOpenidConfigurationRoute: typeof DotwellKnownOpenidConfigurationRoute
   DotwellKnownOpenidCredentialIssuerRoute: typeof DotwellKnownOpenidCredentialIssuerRoute
@@ -6510,6 +6523,13 @@ declare module '@tanstack/react-router' {
       path: '/.well-known/jwt-vc-issuer'
       fullPath: '/.well-known/jwt-vc-issuer'
       preLoaderRoute: typeof DotwellKnownJwtVcIssuerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/.well-known/mcp.json': {
+      id: '/.well-known/mcp.json'
+      path: '/.well-known/mcp.json'
+      fullPath: '/.well-known/mcp.json'
+      preLoaderRoute: typeof DotwellKnownMcpDotjsonRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/.well-known/openapi.json': {
@@ -9992,6 +10012,7 @@ const rootRouteChildren: RootRouteChildren = {
   DotwellKnownAtprotoDidRoute: DotwellKnownAtprotoDidRoute,
   DotwellKnownJwksDotjsonRoute: DotwellKnownJwksDotjsonRoute,
   DotwellKnownJwtVcIssuerRoute: DotwellKnownJwtVcIssuerRoute,
+  DotwellKnownMcpDotjsonRoute: DotwellKnownMcpDotjsonRoute,
   DotwellKnownOpenapiDotjsonRoute: DotwellKnownOpenapiDotjsonRoute,
   DotwellKnownOpenidConfigurationRoute: DotwellKnownOpenidConfigurationRoute,
   DotwellKnownOpenidCredentialIssuerRoute:
