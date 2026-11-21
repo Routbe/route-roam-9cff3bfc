@@ -21,6 +21,7 @@ import { getPlatformFeatures } from "@/lib/admin-platform.functions";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { IdentityVerification } from "@/components/settings/IdentityVerification";
 import { BookingStudioPanel } from "@/components/imported-pages/BookingStudio";
+import { StudioPagePicker, StudioSwitchLine } from "@/components/studio/StudioPagePicker";
 
 type PageMode = StudioPageMode;
 
@@ -34,6 +35,8 @@ export default function Studio({ initialGrid = false }: { initialGrid?: boolean 
   // edits its own, fully separate profile; ProfileEditor is keyed by variant.
   const [variant, setVariant] = useState<ProfileVariant>("alias");
   const [pageMode, setPageMode] = useState<PageMode>("profile");
+  // Bumped on every page switch from the breadcrumb picker, so the canvas shows a short sweep.
+  const [switchToken, setSwitchToken] = useState(0);
   // Uitkomst van de Snapchat-koppeling (?snapchat=…) zichtbaar maken.
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -147,7 +150,16 @@ export default function Studio({ initialGrid = false }: { initialGrid?: boolean 
       width="wide"
       title={t("studio.page.title")}
       description={t("studio.page.description")}
-      crumbs={[{ label: "Studio" }]}
+      crumbs={[{ label: "Studio", to: "/studio" }, ...(pages.handle ? [{ label: pages.handle }] : [])]}
+      breadcrumbActions={
+        user && !activeWorkspace && !(variant === "verified" && !unlocked) ? (
+          <StudioPagePicker
+            options={modesFor(variant).map((mode) => ({ value: mode, path: modeSuffix(mode) || "/", label: modeLabel(mode, t("studio.mode.profile")) }))}
+            value={activeMode}
+            onChange={(next) => { setPageMode(next); setSwitchToken((n) => n + 1); }}
+          />
+        ) : null
+      }
       trustBadges
     >
       {loading || !user || activeWorkspace ? (
@@ -176,6 +188,7 @@ export default function Studio({ initialGrid = false }: { initialGrid?: boolean 
               </DropdownMenuContent></DropdownMenu>;
             })}
           </div>
+          <StudioSwitchLine token={switchToken} />
           <ErrorBoundary label={t("studio.page.title")} inline>
             {variant === "verified" && !unlocked ? (
               state.isLoading ? (

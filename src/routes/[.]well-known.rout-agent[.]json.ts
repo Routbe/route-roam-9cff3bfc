@@ -11,9 +11,20 @@ export const Route = createFileRoute("/.well-known/rout-agent.json")({
           name: "ROUT agent sandbox",
           about: `${o}/about/ai-agents`,
           ai_manifest: `${o}/ai-manifest.json`,
-          pow_challenge: { method: "GET", url: `${o}/api/v1/pow/challenge?scope=vault|workspace`, note: "Single-use proof-of-work; required on heavy operations, sent as x-rout-pow-challenge + x-rout-pow-solution." },
+          pow_challenge: { method: "GET", url: `${o}/api/v1/pow/challenge?scope=sandbox|vault|workspace`, note: "Single-use proof-of-work; required on heavy operations, sent as x-rout-pow-challenge + x-rout-pow-solution." },
           zero_knowledge_handoff: { method: "POST", url: `${o}/api/v1/agent/vault`, auth: "Bearer rsk_… + proof-of-work headers (scope=vault)", details: `${o}/ai-manifest.json` },
           summary: "Build a complete ROUT workspace without any account; a human claims it within 24 hours.",
+          sandbox_ttl_hours: (await import("@/lib/agent/agent-protocol")).SANDBOX_TTL_HOURS,
+          one_shot_v1: {
+            note: "Shortest path: one request creates the workspace; then edit Studio and Login-with-ROUT apps with the returned key.",
+            steps: [
+              { step: 1, method: "GET", url: `${o}/api/v1/pow/challenge?scope=sandbox`, returns: "challenge, difficulty_bits (20)" },
+              { step: 2, method: "POST", url: `${o}/api/v1/agent/workspace/create`, headers: "X-ROUT-Compute-Proof: <challenge>:<solution>; optional DPoP proof binds the key", body: { agent_name: "string ≤80", name: "string ≤120", slug_base: "optional a-z0-9-", profile: "optional, same shape as PATCH …/studio", apps: "optional, ≤3" }, returns: "agent_workspace_token (once), workspace /w/<base>-<xxxx>, claim code, claim link, QR" },
+              { step: 3, method: "GET|PATCH", url: `${o}/api/v1/agent/workspace/{id}/studio`, auth: "Bearer rsk_… (or DPoP rsk_… + fresh DPoP proof)" },
+              { step: 4, method: "GET|PUT", url: `${o}/api/v1/agent/developer/apps`, auth: "Bearer rsk_… (or DPoP)", note: "Apps become real OAuth clients when the human claims the workspace." },
+            ],
+          },
+          mcp: `${o}/.well-known/mcp.json`,
           auth: "Bearer sandbox key (rsk_…) from step 2; never send e-mail addresses or personal data.",
           steps: [
             { step: 1, method: "GET", url: `${o}/api/agent/sandbox`, returns: "challenge, difficulty_bits" },

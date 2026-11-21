@@ -67,7 +67,7 @@ export function profileImageSrc(url: string | null | undefined): string | null {
     if (parsed.origin === "https://rout.be" && (parsed.pathname === "/api/public/avatar" || parsed.pathname === "/api/public/proxy-image")) return `${parsed.pathname}${parsed.search}`;
     // Browser only routes this candidate; the server checks the configured bucket exactly.
     if (/^[a-z0-9.-]+\.s3\.(fr-par|nl-ams|pl-waw)\.scw\.cloud$/.test(parsed.hostname) &&
-        /^\/users\/[a-f0-9-]{36}\/avatar\//.test(parsed.pathname) &&
+        /^\/users\/[a-f0-9-]{36}\/(?:avatar|workspace-logo)\//.test(parsed.pathname) &&
         parsed.protocol === "https:" && !parsed.username && !parsed.password && !parsed.port) {
       return `/api/public/proxy-image?url=${encodeURIComponent(url)}`;
     }

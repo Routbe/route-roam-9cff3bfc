@@ -534,3 +534,14 @@
 - [ ] Bij verificatie (Didit of team) met niet-passende hoofdnaam: automatisch hernoemen naar de eerste vrije toegestane variant
 - [ ] Privé-aliassen vrij; door het team goedgekeurde aliassen blijven bruikbaar tot het team ze intrekt
 - [ ] Door het team ingestelde voornaam/achternaam/bedrijfsnaam is wat de popover bij het blauwe vinkje toont
+
+## Overdracht 21 nov 2026 (handover dossier + meldingen)
+- [x] Werkruimte-profielfoto verschijnt niet op /w/<slug>: publieke weergave liet alleen `users/<uid>/avatar/` toe, niet `workspace-logo/` (image-proxy-rules.ts + test)
+- [x] "ROUT OS v2.5"-statusregel bedekte de mobiele Studio-balk: alleen nog vanaf desktopbreedte
+- [x] Studio-kruimelpad: ROUT > Studio > <handle> + paginakiezer (persoonlijk: /, /tip, /booking, /ask; workspace: /, /ask, /feedback, /support) met korte animatie en melding
+- [ ] "Select text only"-wolkje (Samsung Internet, S26 Ultra): komt niet uit ROUT-code; wacht op schermafbeelding/plek van de eigenaar
+- [x] P1: agent v1-routes aangesloten (workspace/create, workspace/$id/studio, developer/apps)
+- [x] P2: ontdekking voor AI (/.well-known/mcp.json, llms.txt via src/content/seo, OpenAPI met /api/v1/agent/*, rout-agent.json)
+- [ ] P3: handle pas na KYC, canonieke hernoeming na Didit, team-goedkeuringen, exacte admin-naam (wacht op eigenaarskeuzes + migratie-GO)
+- [x] P4: autonomous-agent e2e-test (live deel met ROUT_E2E_ORIGIN), HANDOVER-appendix 0297
+- [x] P4: volledige testsuite groen (3921 geslaagd, 10 overgeslagen, 0 mislukt)

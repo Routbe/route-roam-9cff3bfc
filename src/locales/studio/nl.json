@@ -1048,5 +1048,15 @@
   "booking.inquiry.done": "Opgeslagen. ROUT mailt de gast niet; antwoord zelf als je dat wilt.",
   "studio.editor.diditOnlyHint": "Het blauwe vinkje verschijnt alleen na een voltooide identiteitscheck via Didit. Een betaling of Pro-abonnement geeft het niet.",
   "studio.editor.supporterBadge": "Supporter-kroon tonen",
-  "studio.editor.supporterHelp": "Een discrete kroon naast je naam toont dat je ROUT steunt. Ze zegt niets over je identiteit."
+  "studio.editor.supporterHelp": "Een discrete kroon naast je naam toont dat je ROUT steunt. Ze zegt niets over je identiteit.",
+  "studio.pagePicker.label": "Pagina kiezen",
+  "studio.pagePicker.selected": "Pagina {{page}} geopend",
+  "studio.pagePicker.livePreview": "Voorbeeld van de openbare pagina. Wijzigingen die nog niet gepubliceerd zijn, zie je hier niet.",
+  "studio.pagePicker.openPage": "Open {{page}}",
+  "studio.pagePicker.previewTitle": "Voorbeeld van {{page}}",
+  "studio.pagePicker.managersOnly": "Alleen eigenaars en admins van deze workspace kunnen deze pagina instellen.",
+  "studio.pagePicker.workspace.profile": "Hoofdpagina",
+  "studio.pagePicker.workspace.ask": "Anonieme vragen",
+  "studio.pagePicker.workspace.feedback": "Feedback",
+  "studio.pagePicker.workspace.support": "Steunpagina"
 }

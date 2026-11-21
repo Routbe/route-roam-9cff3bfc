@@ -35,6 +35,8 @@ interface AppLayoutProps {
   title?: string;
   description?: string;
   crumbs?: Crumb[];
+  /** Control placed directly after the last breadcrumb (e.g. Studio's page picker). */
+  breadcrumbActions?: ReactNode;
   /** Optional actions on the title row. */
   actions?: ReactNode;
   /** Studio uses the full viewport width; the generator uses 'full' (no gutter). */
@@ -57,6 +59,7 @@ export function AppLayout({
   title,
   description,
   crumbs,
+  breadcrumbActions,
   actions,
   width = "default",
   trustBadges = false,
@@ -77,7 +80,7 @@ export function AppLayout({
                 {crumbs?.length ? (
                   <nav
                     aria-label={t("ui.breadcrumb")}
-                    className="mb-2 flex items-center gap-1 text-xs text-muted-foreground"
+                    className="mb-2 flex flex-wrap items-center gap-1 text-xs text-muted-foreground"
                   >
                     <Link to="/" className="tap-wide inline-flex min-h-11 items-center hover:text-foreground">
                       ROUT
@@ -94,6 +97,7 @@ export function AppLayout({
                         )}
                       </span>
                     ))}
+                    {breadcrumbActions}
                   </nav>
                 ) : null}
                 {title ? (
@@ -177,12 +181,16 @@ export function AppLayout({
   );
 }
 
+/**
+ * Desktop only: on phones and tablets signed-in tools pin their own action bars to the
+ * bottom edge (Studio save/preview), and this line would paint over them.
+ */
 function OsStatusLine() {
   const { t } = useTranslation();
   return (
     <footer
       data-testid="os-status-line"
-      className="sticky bottom-0 z-40 flex h-7 items-center justify-center gap-2 border-t border-border/60 bg-background/90 font-mono text-[11px] text-muted-foreground backdrop-blur"
+      className="sticky bottom-0 z-40 hidden h-7 lg:flex items-center justify-center gap-2 border-t border-border/60 bg-background/90 font-mono text-[11px] text-muted-foreground backdrop-blur"
     >
       <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-live" aria-hidden />
       {t("ui.systemsOperational")}
