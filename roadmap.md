@@ -544,4 +544,4 @@
 - [x] P2: ontdekking voor AI (/.well-known/mcp.json, llms.txt via src/content/seo, OpenAPI met /api/v1/agent/*, rout-agent.json)
 - [ ] P3: handle pas na KYC, canonieke hernoeming na Didit, team-goedkeuringen, exacte admin-naam (wacht op eigenaarskeuzes + migratie-GO)
 - [x] P4: autonomous-agent e2e-test (live deel met ROUT_E2E_ORIGIN), HANDOVER-appendix 0297
-- [ ] P4: volledige testsuite groen bevestigen
+- [x] P4: volledige testsuite groen (3921 geslaagd, 10 overgeslagen, 0 mislukt)
