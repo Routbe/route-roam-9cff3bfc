@@ -1048,5 +1048,15 @@
   "booking.inquiry.done": "Gespeichert. ROUT schreibt dem Gast keine E-Mail; antworte selbst, wenn du möchtest.",
   "studio.editor.diditOnlyHint": "Das blaue Häkchen erscheint nur nach einer abgeschlossenen Identitätsprüfung mit Didit. Eine Zahlung oder ein Pro-Abo gewährt es nicht.",
   "studio.editor.supporterBadge": "Unterstützer-Krone anzeigen",
-  "studio.editor.supporterHelp": "Eine dezente Krone neben deinem Namen zeigt, dass du ROUT unterstützt. Sie sagt nichts über deine Identität."
+  "studio.editor.supporterHelp": "Eine dezente Krone neben deinem Namen zeigt, dass du ROUT unterstützt. Sie sagt nichts über deine Identität.",
+  "studio.pagePicker.label": "Seite wählen",
+  "studio.pagePicker.selected": "Seite {{page}} geöffnet",
+  "studio.pagePicker.livePreview": "Vorschau der öffentlichen Seite. Noch nicht veröffentlichte Änderungen sind hier nicht zu sehen.",
+  "studio.pagePicker.openPage": "{{page}} öffnen",
+  "studio.pagePicker.previewTitle": "Vorschau von {{page}}",
+  "studio.pagePicker.managersOnly": "Nur Inhaber und Admins dieses Workspace können diese Seite einrichten.",
+  "studio.pagePicker.workspace.profile": "Hauptseite",
+  "studio.pagePicker.workspace.ask": "Anonyme Fragen",
+  "studio.pagePicker.workspace.feedback": "Feedback",
+  "studio.pagePicker.workspace.support": "Unterstützungsseite"
 }

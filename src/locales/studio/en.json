@@ -1048,5 +1048,15 @@
   "booking.inquiry.done": "Saved. ROUT does not email the guest; reply yourself if you want to.",
   "studio.editor.diditOnlyHint": "The blue checkmark appears only after a completed identity check with Didit. A payment or Pro plan does not grant it.",
   "studio.editor.supporterBadge": "Show supporter crown",
-  "studio.editor.supporterHelp": "A discreet crown next to your name shows that you support ROUT. It says nothing about your identity."
+  "studio.editor.supporterHelp": "A discreet crown next to your name shows that you support ROUT. It says nothing about your identity.",
+  "studio.pagePicker.label": "Choose page",
+  "studio.pagePicker.selected": "Page {{page}} opened",
+  "studio.pagePicker.livePreview": "Preview of the public page. Changes that are not published yet do not show here.",
+  "studio.pagePicker.openPage": "Open {{page}}",
+  "studio.pagePicker.previewTitle": "Preview of {{page}}",
+  "studio.pagePicker.managersOnly": "Only owners and admins of this workspace can set up this page.",
+  "studio.pagePicker.workspace.profile": "Main page",
+  "studio.pagePicker.workspace.ask": "Anonymous questions",
+  "studio.pagePicker.workspace.feedback": "Feedback",
+  "studio.pagePicker.workspace.support": "Support page"
 }
