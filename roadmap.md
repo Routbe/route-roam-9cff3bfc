@@ -541,6 +541,7 @@
 - [x] Studio-kruimelpad: ROUT > Studio > <handle> + paginakiezer (persoonlijk: /, /tip, /booking, /ask; workspace: /, /ask, /feedback, /support) met korte animatie en melding
 - [ ] "Select text only"-wolkje (Samsung Internet, S26 Ultra): komt niet uit ROUT-code; wacht op schermafbeelding/plek van de eigenaar
 - [x] P1: agent v1-routes aangesloten (workspace/create, workspace/$id/studio, developer/apps)
-- [ ] P2: ontdekking voor AI (/.well-known/mcp.json, llms.txt via src/content/seo, OpenAPI met /api/v1/agent/*, rout-agent.json)
+- [x] P2: ontdekking voor AI (/.well-known/mcp.json, llms.txt via src/content/seo, OpenAPI met /api/v1/agent/*, rout-agent.json)
 - [ ] P3: handle pas na KYC, canonieke hernoeming na Didit, team-goedkeuringen, exacte admin-naam (wacht op eigenaarskeuzes + migratie-GO)
-- [ ] P4: autonomous-agent e2e-test, volledige testsuite, HANDOVER-appendix 0297
+- [x] P4: autonomous-agent e2e-test (live deel met ROUT_E2E_ORIGIN), HANDOVER-appendix 0297
+- [ ] P4: volledige testsuite groen bevestigen
