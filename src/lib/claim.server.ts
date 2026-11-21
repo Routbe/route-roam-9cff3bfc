@@ -11,9 +11,22 @@ export async function readMyHandle(userId: string) {
     .select("username, display_name")
     .eq("id", userId)
     .maybeSingle();
+  const { memberMayHoldRootHandle } = await import("./kyc/root-handle-gate.server");
+  const { sql } = await import("@/lib/neon");
+  const alias = (await sql`
+    select a.handle, coalesce(d.published_revision, 0) > 0 as published
+      from public.alias_profiles a
+      left join public.profile_drafts d on d.user_id = a.user_id and d.space = 'alias'
+     where a.user_id = ${userId} limit 1
+  `.catch(() => [])) as { handle: string | null; published: boolean }[];
   return {
     handle: (data?.username as string | null) ?? null,
     displayName: (data?.display_name as string | null) ?? null,
+    /** False until a successful Didit verification: only a /u/ alias may be chosen. */
+    rootAllowed: await memberMayHoldRootHandle(userId),
+    aliasHandle: alias[0]?.handle ?? null,
+    /** The member finished onboarding on their private alias. */
+    aliasPublished: Boolean(alias[0]?.published),
   };
 }
 
@@ -114,6 +127,11 @@ export async function claimHandleFor(
   const { normalizeHandle, isHandleFree } = await import("./onboarding.server");
   const { hasValidDigitSuffix } = await import("./handle-suggestions");
   const normalized = normalizeHandle(raw);
+  const { memberMayHoldRootHandle } = await import("./kyc/root-handle-gate.server");
+  if (!(await memberMayHoldRootHandle(userId))) {
+    const { ROOT_HANDLE_KYC_REASON } = await import("./kyc/root-handle-gate");
+    return { ok: false as const, handle: normalized, code: "identity_required" as const, reason: ROOT_HANDLE_KYC_REASON };
+  }
   const profile = await loadProfile(userId);
 
   if (isVerifiedActive(profile)) {

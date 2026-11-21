@@ -165,6 +165,10 @@ export const publishStudioProfile = createServerFn({ method: "POST" })
         displayPrefs: live.displayPrefs,
       });
       const username = String(current.payload.username ?? "");
+      if (username.toLowerCase() !== String(live.username ?? "").toLowerCase()) {
+        const { memberMayHoldRootHandle } = await import("./kyc/root-handle-gate.server");
+        if (!(await memberMayHoldRootHandle(context.userId))) throw new Error("handle_identity_required");
+      }
       const available = await isHandleFree(username, context.userId);
       if (!available.ok) throw new Error(`handle_${available.reason}`);
       const meta = await publishProfileDraft(context.userId, "verified", data.expectedRevision);
