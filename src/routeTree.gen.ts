@@ -467,11 +467,14 @@ import { Route as AuthenticatedStudioWWorkspaceSlugSettingsRouteImport } from '.
 import { Route as AuthenticatedStudioWWorkspaceSlugStudioRouteImport } from './routes/_authenticated/studio_.w.$workspaceSlug.studio'
 import { Route as ApiPublicBookingsIdActionRouteImport } from './routes/api_.public.bookings.$id.$action'
 import { Route as ApiPublicIntegrationsMastodonAvatarRouteImport } from './routes/api_.public.integrations.mastodon.avatar'
+import { Route as ApiV1AgentDeveloperAppsRouteImport } from './routes/api_.v1.agent.developer.apps'
+import { Route as ApiV1AgentWorkspaceCreateRouteImport } from './routes/api_.v1.agent.workspace.create'
 import { Route as ApiV1KycDiditSessionRouteImport } from './routes/api_.v1.kyc.didit.session'
 import { Route as ApiV1KycDiditWebhookRouteImport } from './routes/api_.v1.kyc.didit.webhook'
 import { Route as ApiV1LedgerStreamsStreamIdRouteImport } from './routes/api_.v1.ledger.streams.$streamId'
 import { Route as ApiWalletRenderCardIdHeroDotpngRouteImport } from './routes/api_.wallet.render.$cardId.hero[.]png'
 import { Route as ApiPublicOauthVpResponseIdRouteImport } from './routes/api_.public.oauth.vp.response.$id'
+import { Route as ApiV1AgentWorkspaceWorkspaceIdStudioRouteImport } from './routes/api_.v1.agent.workspace.$workspaceId.studio'
 import { Route as ApiWalletRenderCardIdVersionFileRouteImport } from './routes/api_.wallet.render.$cardId.$version.$file'
 import { Route as ApiWalletRenderLogoBgFileRouteImport } from './routes/api_.wallet.render.logo.$bg.$file'
 
@@ -2892,6 +2895,17 @@ const ApiPublicIntegrationsMastodonAvatarRoute =
     path: '/mastodon/avatar',
     getParentRoute: () => ApiPublicIntegrationsRoute,
   } as any)
+const ApiV1AgentDeveloperAppsRoute = ApiV1AgentDeveloperAppsRouteImport.update({
+  id: '/api_/v1/agent/developer/apps',
+  path: '/api/v1/agent/developer/apps',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiV1AgentWorkspaceCreateRoute =
+  ApiV1AgentWorkspaceCreateRouteImport.update({
+    id: '/api_/v1/agent/workspace/create',
+    path: '/api/v1/agent/workspace/create',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiV1KycDiditSessionRoute = ApiV1KycDiditSessionRouteImport.update({
   id: '/api_/v1/kyc/didit/session',
   path: '/api/v1/kyc/didit/session',
@@ -2918,6 +2932,12 @@ const ApiPublicOauthVpResponseIdRoute =
   ApiPublicOauthVpResponseIdRouteImport.update({
     id: '/api_/public/oauth/vp/response/$id',
     path: '/api/public/oauth/vp/response/$id',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiV1AgentWorkspaceWorkspaceIdStudioRoute =
+  ApiV1AgentWorkspaceWorkspaceIdStudioRouteImport.update({
+    id: '/api_/v1/agent/workspace/$workspaceId/studio',
+    path: '/api/v1/agent/workspace/$workspaceId/studio',
     getParentRoute: () => rootRouteImport,
   } as any)
 const ApiWalletRenderCardIdVersionFileRoute =
@@ -3390,12 +3410,15 @@ export interface FileRoutesByFullPath {
   '/studio/w/$workspaceSlug/studio': typeof AuthenticatedStudioWWorkspaceSlugStudioRoute
   '/api/public/bookings/$id/$action': typeof ApiPublicBookingsIdActionRoute
   '/api/public/integrations/mastodon/avatar': typeof ApiPublicIntegrationsMastodonAvatarRoute
+  '/api/v1/agent/developer/apps': typeof ApiV1AgentDeveloperAppsRoute
+  '/api/v1/agent/workspace/create': typeof ApiV1AgentWorkspaceCreateRoute
   '/api/v1/kyc/didit/session': typeof ApiV1KycDiditSessionRoute
   '/api/v1/kyc/didit/webhook': typeof ApiV1KycDiditWebhookRoute
   '/api/v1/ledger/streams/$streamId': typeof ApiV1LedgerStreamsStreamIdRoute
   '/api/wallet/render/$cardId/hero.png': typeof ApiWalletRenderCardIdHeroDotpngRoute
   '/console/apps/$appId/': typeof AuthenticatedConsoleAppsAppIdIndexRoute
   '/api/public/oauth/vp/response/$id': typeof ApiPublicOauthVpResponseIdRoute
+  '/api/v1/agent/workspace/$workspaceId/studio': typeof ApiV1AgentWorkspaceWorkspaceIdStudioRoute
   '/api/wallet/render/$cardId/$version/$file': typeof ApiWalletRenderCardIdVersionFileRoute
   '/api/wallet/render/logo/$bg/$file': typeof ApiWalletRenderLogoBgFileRoute
 }
@@ -3839,12 +3862,15 @@ export interface FileRoutesByTo {
   '/studio/w/$workspaceSlug/studio': typeof AuthenticatedStudioWWorkspaceSlugStudioRoute
   '/api/public/bookings/$id/$action': typeof ApiPublicBookingsIdActionRoute
   '/api/public/integrations/mastodon/avatar': typeof ApiPublicIntegrationsMastodonAvatarRoute
+  '/api/v1/agent/developer/apps': typeof ApiV1AgentDeveloperAppsRoute
+  '/api/v1/agent/workspace/create': typeof ApiV1AgentWorkspaceCreateRoute
   '/api/v1/kyc/didit/session': typeof ApiV1KycDiditSessionRoute
   '/api/v1/kyc/didit/webhook': typeof ApiV1KycDiditWebhookRoute
   '/api/v1/ledger/streams/$streamId': typeof ApiV1LedgerStreamsStreamIdRoute
   '/api/wallet/render/$cardId/hero.png': typeof ApiWalletRenderCardIdHeroDotpngRoute
   '/console/apps/$appId': typeof AuthenticatedConsoleAppsAppIdIndexRoute
   '/api/public/oauth/vp/response/$id': typeof ApiPublicOauthVpResponseIdRoute
+  '/api/v1/agent/workspace/$workspaceId/studio': typeof ApiV1AgentWorkspaceWorkspaceIdStudioRoute
   '/api/wallet/render/$cardId/$version/$file': typeof ApiWalletRenderCardIdVersionFileRoute
   '/api/wallet/render/logo/$bg/$file': typeof ApiWalletRenderLogoBgFileRoute
 }
@@ -4307,12 +4333,15 @@ export interface FileRoutesById {
   '/_authenticated/studio_/w/$workspaceSlug/studio': typeof AuthenticatedStudioWWorkspaceSlugStudioRoute
   '/api_/public/bookings/$id/$action': typeof ApiPublicBookingsIdActionRoute
   '/api_/public/integrations/mastodon/avatar': typeof ApiPublicIntegrationsMastodonAvatarRoute
+  '/api_/v1/agent/developer/apps': typeof ApiV1AgentDeveloperAppsRoute
+  '/api_/v1/agent/workspace/create': typeof ApiV1AgentWorkspaceCreateRoute
   '/api_/v1/kyc/didit/session': typeof ApiV1KycDiditSessionRoute
   '/api_/v1/kyc/didit/webhook': typeof ApiV1KycDiditWebhookRoute
   '/api_/v1/ledger/streams/$streamId': typeof ApiV1LedgerStreamsStreamIdRoute
   '/api_/wallet/render/$cardId/hero.png': typeof ApiWalletRenderCardIdHeroDotpngRoute
   '/_authenticated/console/apps/$appId/': typeof AuthenticatedConsoleAppsAppIdIndexRoute
   '/api_/public/oauth/vp/response/$id': typeof ApiPublicOauthVpResponseIdRoute
+  '/api_/v1/agent/workspace/$workspaceId/studio': typeof ApiV1AgentWorkspaceWorkspaceIdStudioRoute
   '/api_/wallet/render/$cardId/$version/$file': typeof ApiWalletRenderCardIdVersionFileRoute
   '/api_/wallet/render/logo/$bg/$file': typeof ApiWalletRenderLogoBgFileRoute
 }
@@ -4775,12 +4804,15 @@ export interface FileRouteTypes {
     | '/studio/w/$workspaceSlug/studio'
     | '/api/public/bookings/$id/$action'
     | '/api/public/integrations/mastodon/avatar'
+    | '/api/v1/agent/developer/apps'
+    | '/api/v1/agent/workspace/create'
     | '/api/v1/kyc/didit/session'
     | '/api/v1/kyc/didit/webhook'
     | '/api/v1/ledger/streams/$streamId'
     | '/api/wallet/render/$cardId/hero.png'
     | '/console/apps/$appId/'
     | '/api/public/oauth/vp/response/$id'
+    | '/api/v1/agent/workspace/$workspaceId/studio'
     | '/api/wallet/render/$cardId/$version/$file'
     | '/api/wallet/render/logo/$bg/$file'
   fileRoutesByTo: FileRoutesByTo
@@ -5224,12 +5256,15 @@ export interface FileRouteTypes {
     | '/studio/w/$workspaceSlug/studio'
     | '/api/public/bookings/$id/$action'
     | '/api/public/integrations/mastodon/avatar'
+    | '/api/v1/agent/developer/apps'
+    | '/api/v1/agent/workspace/create'
     | '/api/v1/kyc/didit/session'
     | '/api/v1/kyc/didit/webhook'
     | '/api/v1/ledger/streams/$streamId'
     | '/api/wallet/render/$cardId/hero.png'
     | '/console/apps/$appId'
     | '/api/public/oauth/vp/response/$id'
+    | '/api/v1/agent/workspace/$workspaceId/studio'
     | '/api/wallet/render/$cardId/$version/$file'
     | '/api/wallet/render/logo/$bg/$file'
   id:
@@ -5691,12 +5726,15 @@ export interface FileRouteTypes {
     | '/_authenticated/studio_/w/$workspaceSlug/studio'
     | '/api_/public/bookings/$id/$action'
     | '/api_/public/integrations/mastodon/avatar'
+    | '/api_/v1/agent/developer/apps'
+    | '/api_/v1/agent/workspace/create'
     | '/api_/v1/kyc/didit/session'
     | '/api_/v1/kyc/didit/webhook'
     | '/api_/v1/ledger/streams/$streamId'
     | '/api_/wallet/render/$cardId/hero.png'
     | '/_authenticated/console/apps/$appId/'
     | '/api_/public/oauth/vp/response/$id'
+    | '/api_/v1/agent/workspace/$workspaceId/studio'
     | '/api_/wallet/render/$cardId/$version/$file'
     | '/api_/wallet/render/logo/$bg/$file'
   fileRoutesById: FileRoutesById
@@ -5956,11 +5994,14 @@ export interface RootRouteChildren {
   ApiWalletRenderHeroDotpngRoute: typeof ApiWalletRenderHeroDotpngRoute
   ApiWalletRenderPremiumLogoDotpngRoute: typeof ApiWalletRenderPremiumLogoDotpngRoute
   ApiPublicBookingsIdActionRoute: typeof ApiPublicBookingsIdActionRoute
+  ApiV1AgentDeveloperAppsRoute: typeof ApiV1AgentDeveloperAppsRoute
+  ApiV1AgentWorkspaceCreateRoute: typeof ApiV1AgentWorkspaceCreateRoute
   ApiV1KycDiditSessionRoute: typeof ApiV1KycDiditSessionRoute
   ApiV1KycDiditWebhookRoute: typeof ApiV1KycDiditWebhookRoute
   ApiV1LedgerStreamsStreamIdRoute: typeof ApiV1LedgerStreamsStreamIdRoute
   ApiWalletRenderCardIdHeroDotpngRoute: typeof ApiWalletRenderCardIdHeroDotpngRoute
   ApiPublicOauthVpResponseIdRoute: typeof ApiPublicOauthVpResponseIdRoute
+  ApiV1AgentWorkspaceWorkspaceIdStudioRoute: typeof ApiV1AgentWorkspaceWorkspaceIdStudioRoute
   ApiWalletRenderCardIdVersionFileRoute: typeof ApiWalletRenderCardIdVersionFileRoute
   ApiWalletRenderLogoBgFileRoute: typeof ApiWalletRenderLogoBgFileRoute
 }
@@ -9173,6 +9214,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicIntegrationsMastodonAvatarRouteImport
       parentRoute: typeof ApiPublicIntegrationsRoute
     }
+    '/api_/v1/agent/developer/apps': {
+      id: '/api_/v1/agent/developer/apps'
+      path: '/api/v1/agent/developer/apps'
+      fullPath: '/api/v1/agent/developer/apps'
+      preLoaderRoute: typeof ApiV1AgentDeveloperAppsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api_/v1/agent/workspace/create': {
+      id: '/api_/v1/agent/workspace/create'
+      path: '/api/v1/agent/workspace/create'
+      fullPath: '/api/v1/agent/workspace/create'
+      preLoaderRoute: typeof ApiV1AgentWorkspaceCreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api_/v1/kyc/didit/session': {
       id: '/api_/v1/kyc/didit/session'
       path: '/api/v1/kyc/didit/session'
@@ -9206,6 +9261,13 @@ declare module '@tanstack/react-router' {
       path: '/api/public/oauth/vp/response/$id'
       fullPath: '/api/public/oauth/vp/response/$id'
       preLoaderRoute: typeof ApiPublicOauthVpResponseIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api_/v1/agent/workspace/$workspaceId/studio': {
+      id: '/api_/v1/agent/workspace/$workspaceId/studio'
+      path: '/api/v1/agent/workspace/$workspaceId/studio'
+      fullPath: '/api/v1/agent/workspace/$workspaceId/studio'
+      preLoaderRoute: typeof ApiV1AgentWorkspaceWorkspaceIdStudioRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api_/wallet/render/$cardId/$version/$file': {
@@ -10116,11 +10178,15 @@ const rootRouteChildren: RootRouteChildren = {
   ApiWalletRenderHeroDotpngRoute: ApiWalletRenderHeroDotpngRoute,
   ApiWalletRenderPremiumLogoDotpngRoute: ApiWalletRenderPremiumLogoDotpngRoute,
   ApiPublicBookingsIdActionRoute: ApiPublicBookingsIdActionRoute,
+  ApiV1AgentDeveloperAppsRoute: ApiV1AgentDeveloperAppsRoute,
+  ApiV1AgentWorkspaceCreateRoute: ApiV1AgentWorkspaceCreateRoute,
   ApiV1KycDiditSessionRoute: ApiV1KycDiditSessionRoute,
   ApiV1KycDiditWebhookRoute: ApiV1KycDiditWebhookRoute,
   ApiV1LedgerStreamsStreamIdRoute: ApiV1LedgerStreamsStreamIdRoute,
   ApiWalletRenderCardIdHeroDotpngRoute: ApiWalletRenderCardIdHeroDotpngRoute,
   ApiPublicOauthVpResponseIdRoute: ApiPublicOauthVpResponseIdRoute,
+  ApiV1AgentWorkspaceWorkspaceIdStudioRoute:
+    ApiV1AgentWorkspaceWorkspaceIdStudioRoute,
   ApiWalletRenderCardIdVersionFileRoute: ApiWalletRenderCardIdVersionFileRoute,
   ApiWalletRenderLogoBgFileRoute: ApiWalletRenderLogoBgFileRoute,
 }
