@@ -23,6 +23,13 @@ describe("image proxy allowlist", () => {
     const url = "https://members.s3.fr-par.scw.cloud/users/12345678-1234-1234-1234-123456789012/avatar/1.webp";
     expect(profileImageSrc(url)).toBe(`/api/public/proxy-image?url=${encodeURIComponent(url)}`);
   });
+  it("routes stored Scaleway workspace logos through ROUT", () => {
+    const url = "https://members.s3.fr-par.scw.cloud/users/12345678-1234-1234-1234-123456789012/workspace-logo/1795167010277.png";
+    expect(profileImageSrc(url)).toBe(`/api/public/proxy-image?url=${encodeURIComponent(url)}`);
+  });
+  it("still refuses other folders in the member bucket", () => {
+    expect(profileImageSrc("https://members.s3.fr-par.scw.cloud/users/12345678-1234-1234-1234-123456789012/private/1.png")).toBeNull();
+  });
   it("only authorizes the exact configured storage bucket on the server", () => {
     expect(isAllowedProxyUrl("https://members.s3.fr-par.scw.cloud/a.webp", ["members.s3.fr-par.scw.cloud"])).not.toBeNull();
     expect(isAllowedProxyUrl("https://other.s3.fr-par.scw.cloud/a.webp", ["members.s3.fr-par.scw.cloud"])).toBeNull();
